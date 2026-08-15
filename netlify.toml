@@ -1,5 +1,5 @@
 [build]
-  command = "npx vite build"
+  command = "npm config set ignore-scripts false && npm rebuild && npx vite build"
   publish = "dist"
 
 [[redirects]]
