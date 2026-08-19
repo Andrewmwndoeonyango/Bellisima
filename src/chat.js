@@ -3,6 +3,8 @@ import {
   getDatabase,
   ref,
   push,
+  set,
+  onValue,
   onChildAdded,
   onChildRemoved,
   query,
@@ -96,4 +98,19 @@ export function listenForMessages(onNew, onRemove) {
 
 export function clearAllMessages() {
   return remove(ref(db, CHAT_PATH));
+}
+
+// ── Promises helpers ──
+const PROMISES_PATH = 'us_promises';
+
+export function listenForPromises(onUpdate) {
+  const promisesRef = ref(db, PROMISES_PATH);
+  const unsub = onValue(promisesRef, (snapshot) => {
+    onUpdate(snapshot.val() || []);
+  });
+  return unsub;
+}
+
+export function setPromises(checkedIndices) {
+  return set(ref(db, PROMISES_PATH), checkedIndices);
 }

@@ -1,18 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getSetting, putSetting } from '../db';
+import { listenForPromises, setPromises } from '../chat';
 import { promises } from '../data';
-
-const SETTINGS_KEY = 'promises_checked';
 
 export default function usePromises() {
   const [checked, setChecked] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getSetting(SETTINGS_KEY).then((val) => {
-      setChecked(val || []);
+    const unsub = listenForPromises((data) => {
+      setChecked(Array.isArray(data) ? data : []);
       setLoading(false);
     });
+    return unsub;
   }, []);
 
   const toggle = useCallback((index) => {
@@ -20,10 +19,9 @@ export default function usePromises() {
       const next = prev.includes(index)
         ? prev.filter((i) => i !== index)
         : [...prev, index];
-      putSetting(SETTINGS_KEY, next);
+      setPromises(next);
       return next;
     });
-    // Return whether it was just checked (for celebration effect)
     return !checked.includes(index);
   }, [checked]);
 
