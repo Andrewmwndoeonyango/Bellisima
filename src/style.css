@@ -1921,3 +1921,470 @@ body::after {
   margin-bottom: 0.2rem;
   letter-spacing: 0.5px;
 }
+
+/* ========== THINKING OF YOU PING ========== */
+.ping-fab {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, rgba(13, 33, 55, 0.95), rgba(20, 40, 65, 0.95));
+  border: 1px solid rgba(79, 195, 247, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(30, 144, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ping-fab:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(30, 144, 255, 0.2);
+}
+
+.ping-fab:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.ping-fab-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.ping-fab-icon.sent {
+  animation: pulseGlow 1s ease-in-out infinite;
+}
+
+.ping-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.ping-toast {
+  background: linear-gradient(135deg, rgba(13, 33, 55, 0.98), rgba(20, 40, 65, 0.98));
+  border: 1px solid rgba(79, 195, 247, 0.3);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(30, 144, 255, 0.15);
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 300px;
+}
+
+.ping-toast-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: pulseGlow 1s ease-in-out infinite;
+}
+
+.ping-toast-text {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin: 0 0 0.3rem;
+}
+
+.ping-toast-sub {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin: 0;
+}
+
+/* ========== MOOD CHECK-IN ========== */
+.mood-section {
+  text-align: center;
+}
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.mood-btn {
+  font-size: 1.8rem;
+  background: rgba(30, 144, 255, 0.05);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 12px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mood-btn:hover {
+  background: rgba(30, 144, 255, 0.15);
+  transform: scale(1.15);
+  border-color: var(--blue-glow);
+}
+
+.mood-result {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.mood-mine,
+.mood-theirs {
+  text-align: center;
+}
+
+.mood-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.mood-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mood-waiting .mood-emoji {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+/* ========== LOVE STREAK ========== */
+.streak-section {
+  text-align: center;
+}
+
+.streak-display {
+  margin-top: 1rem;
+}
+
+.streak-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.streak-fire {
+  font-size: 2rem;
+}
+
+.streak-count {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--blue-glow);
+}
+
+.streak-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0.3rem 0;
+}
+
+.streak-record {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin: 0.3rem 0 0;
+}
+
+/* ========== DATE COUNTDOWN ========== */
+.countdown-section {
+  text-align: center;
+}
+
+.countdown-display {
+  margin: 1rem 0 0.5rem;
+}
+
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--blue-glow);
+  display: block;
+}
+
+.countdown-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.countdown-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 0.3rem 0;
+}
+
+.countdown-set-btn,
+.countdown-edit-btn {
+  background: rgba(30, 144, 255, 0.1);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  color: var(--blue-glow);
+  border-radius: 12px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.countdown-set-btn:hover,
+.countdown-edit-btn:hover {
+  background: rgba(30, 144, 255, 0.2);
+  border-color: var(--blue-glow);
+}
+
+.countdown-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.countdown-input {
+  padding: 0.7rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.countdown-input:focus {
+  border-color: var(--blue-glow);
+  box-shadow: 0 0 15px rgba(79, 195, 247, 0.15);
+}
+
+.countdown-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.6) sepia(1) saturate(3) hue-rotate(180deg);
+}
+
+.countdown-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.countdown-save-btn {
+  flex: 1;
+  padding: 0.6rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.countdown-save-btn:hover {
+  transform: translateY(-1px);
+}
+
+.countdown-cancel-btn {
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.countdown-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== DAILY QUESTION ========== */
+.dailyq-section {
+  text-align: center;
+}
+
+.dailyq-question {
+  font-family: var(--font-script);
+  font-size: 1.3rem;
+  color: var(--pink-accent);
+  margin: 0.8rem 0;
+  line-height: 1.4;
+}
+
+.dailyq-form {
+  margin-top: 0.8rem;
+}
+
+.dailyq-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.dailyq-input:focus {
+  border-color: var(--blue-glow);
+  box-shadow: 0 0 15px rgba(79, 195, 247, 0.15);
+}
+
+.dailyq-btn {
+  margin-top: 0.6rem;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dailyq-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.dailyq-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.dailyq-answers {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.dailyq-answer-card {
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.dailyq-answer-card.theirs {
+  border-color: rgba(255, 107, 138, 0.2);
+}
+
+.dailyq-who {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue-glow);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dailyq-answer-card.theirs .dailyq-who {
+  color: var(--pink-accent);
+}
+
+.dailyq-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0;
+  line-height: 1.5;
+}
+
+.dailyq-waiting {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* ========== MILESTONES ========== */
+.milestones-section {
+  text-align: center;
+}
+
+.milestone-next {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem auto;
+  max-width: 300px;
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+.milestone-next-emoji {
+  font-size: 2.5rem;
+}
+
+.milestone-next-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.milestone-next-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+}
+
+.milestone-next-countdown {
+  color: var(--blue-glow);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.milestones-completed-title {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 1.2rem 0 0.5rem;
+}
+
+.milestones-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.milestone-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 20px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}

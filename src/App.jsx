@@ -15,9 +15,15 @@ import PhotoGallery from './components/PhotoGallery';
 import Lightbox from './components/Lightbox';
 import LoveLetter from './components/LoveLetter';
 import Playlist from './components/Playlist';
+import MoodCheckin from './components/MoodCheckin';
+import LoveStreak from './components/LoveStreak';
+import DateCountdown from './components/DateCountdown';
+import DailyQuestion from './components/DailyQuestion';
+import Milestones from './components/Milestones';
 import PromisesList from './components/PromisesList';
 import ComplimentButton from './components/ComplimentButton';
 import HeartBurst from './components/HeartBurst';
+import ThinkingOfYou from './components/ThinkingOfYou';
 import ChatPanel from './components/ChatPanel';
 import LoginScreen from './components/LoginScreen';
 import Footer from './components/Footer';
@@ -40,6 +46,7 @@ export default function App() {
   const { photos, upload, remove } = usePhotos();
   const heartRef = useRef(null);
   const userName = getDisplayName(user);
+  const otherName = userName === 'Andy' ? 'Grace' : 'Andy';
 
   // Lightbox state
   const [lbOpen, setLbOpen] = useState(false);
@@ -108,6 +115,10 @@ export default function App() {
         />
         <LoveCounter life={life} />
         <BirthdayCountdown birthday={birthday} />
+        <LoveStreak userId={userName} />
+        <DateCountdown userName={userName} />
+        <MoodCheckin userId={userName} otherName={otherName} />
+        <DailyQuestion userId={userName} otherName={otherName} />
         <LoveMessages />
         <ReasonsGrid />
         <PhotoGallery
@@ -119,6 +130,7 @@ export default function App() {
         <LoveLetter />
         <Playlist />
         <PromisesList onHeartBurst={handleHearts} />
+        <Milestones />
         <Footer time={clock.time} />
       </div>
 
@@ -133,6 +145,7 @@ export default function App() {
 
       <ComplimentButton onHearts={handleHearts} />
       <HeartBurst ref={heartRef} />
+      <ThinkingOfYou userName={userName} />
       <ChatPanel userName={userName} />
       <CursorTrail />
     </>

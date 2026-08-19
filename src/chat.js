@@ -4,6 +4,8 @@ import {
   ref,
   push,
   set,
+  update,
+  get,
   onValue,
   onChildAdded,
   onChildRemoved,
@@ -113,4 +115,107 @@ export function listenForPromises(onUpdate) {
 
 export function setPromises(checkedIndices) {
   return set(ref(db, PROMISES_PATH), checkedIndices);
+}
+
+// ── Ping ("Thinking of You") helpers ──
+const PINGS_PATH = 'us_pings';
+
+export function sendPing(sender) {
+  return push(ref(db, PINGS_PATH), {
+    sender,
+    timestamp: serverTimestamp(),
+  });
+}
+
+export function listenForPings(onNew) {
+  const unsub = onChildAdded(ref(db, PINGS_PATH), (snapshot) => {
+    onNew({ id: snapshot.key, ...snapshot.val() });
+  });
+  return () => unsub();
+}
+
+export function clearPings() {
+  return remove(ref(db, PINGS_PATH));
+}
+
+// ── Mood check-in helpers ──
+const MOODS_PATH = 'us_moods';
+
+export function setMood(userId, emoji) {
+  const today = new Date().toISOString().slice(0, 10);
+  return set(ref(db, `${MOODS_PATH}/${today}/${userId}`), {
+    emoji,
+    timestamp: serverTimestamp(),
+  });
+}
+
+export function listenForMoods(onUpdate) {
+  const unsub = onValue(ref(db, MOODS_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || {});
+  });
+  return unsub;
+}
+
+// ── Streak tracker helpers ──
+const STREAK_PATH = 'us_streak';
+
+export function updateStreak(userId) {
+  const today = new Date().toISOString().slice(0, 10);
+  return update(ref(db, STREAK_PATH), {
+    [`${userId}_lastVisit`]: today,
+  });
+}
+
+export function listenForStreak(onUpdate) {
+  const unsub = onValue(ref(db, STREAK_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || {});
+  });
+  return unsub;
+}
+
+// ── Next date countdown helpers ──
+const NEXTDATE_PATH = 'us_nextdate';
+
+export function setNextDate(dateStr, title) {
+  return set(ref(db, NEXTDATE_PATH), { date: dateStr, title });
+}
+
+export function listenForNextDate(onUpdate) {
+  const unsub = onValue(ref(db, NEXTDATE_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || null);
+  });
+  return unsub;
+}
+
+// ── Daily love question helpers ──
+const DAILYQ_PATH = 'us_dailyq';
+
+export function setDailyAnswer(userId, question, answer) {
+  const today = new Date().toISOString().slice(0, 10);
+  return set(ref(db, `${DAILYQ_PATH}/${today}/${userId}`), {
+    question,
+    answer,
+    timestamp: serverTimestamp(),
+  });
+}
+
+export function listenForDailyAnswers(onUpdate) {
+  const unsub = onValue(ref(db, DAILYQ_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || {});
+  });
+  return unsub;
+}
+
+// ── Milestones helpers ──
+const MILESTONES_PATH = 'us_milestones';
+
+export function setMilestone(key, data) {
+  return set(ref(db, `${MILESTONES_PATH}/${key}`), data);
+}
+
+export function listenForMilestones(onUpdate) {
+  const unsub = onValue(ref(db, MILESTONES_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || {});
+  });
+  return unsub;
 }
