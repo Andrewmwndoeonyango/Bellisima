@@ -18,31 +18,14 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 
-/*
- * ── HOW TO SET UP YOUR FIREBASE ──
- *
- * 1. Go to https://console.firebase.google.com
- * 2. Click "Add project" → name it (e.g. "Bellisima")
- * 3. Disable Google Analytics (optional) → Create
- * 4. Left menu → "Realtime Database" → "Create Database"
- *    - Choose a region close to you
- *    - Start in TEST MODE (you can lock it down later)
- * 5. Left menu → "Authentication" → "Get started"
- *    - Enable "Email/Password" sign-in method
- *    - Add two users manually: one for Andy, one for Grace
- * 6. Left menu → ⚙️ Project Settings → General → scroll to "Your apps"
- * 7. Click the web icon </> → Register app → copy the firebaseConfig
- * 8. Paste your config below replacing the placeholder values
- */
-
 const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT.firebaseapp.com",
-  databaseURL:       "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId:         "YOUR_PROJECT",
-  storageBucket:     "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "000000000000",
-  appId:             "YOUR_APP_ID",
+  apiKey:            "AIzaSyD8RH5xUqTOQbhwS0qT7O8bYSt6CAOXrF0",
+  authDomain:        "bellisima-bfd22.firebaseapp.com",
+  databaseURL:       "https://bellisima-bfd22-default-rtdb.firebaseio.com",
+  projectId:         "bellisima-bfd22",
+  storageBucket:     "bellisima-bfd22.firebasestorage.app",
+  messagingSenderId: "1076106831846",
+  appId:             "1:1076106831846:web:e1656441fd3a9df1e39827",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -51,9 +34,8 @@ const auth = getAuth(app);
 
 // ── Known users map (email → display name) ──
 const KNOWN_USERS = {
-  // Add your actual emails and names after creating users in Firebase Console
-  // 'andy@example.com': 'Andy',
-  // 'grace@example.com': 'Grace',
+  'amwandoeonyango@gmail.com': 'Andy',
+  'njerugrace326@gmail.com': 'Grace',
 };
 
 const CHAT_PATH = 'us_chat';
