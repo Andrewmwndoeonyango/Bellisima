@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { onAuthChange, getDisplayName } from './chat';
 import useRealTimeClock from './hooks/useRealTimeClock';
 import useCounters from './hooks/useCounters';
 import usePhotos from './hooks/usePhotos';
@@ -18,13 +19,27 @@ import PromisesList from './components/PromisesList';
 import ComplimentButton from './components/ComplimentButton';
 import HeartBurst from './components/HeartBurst';
 import ChatPanel from './components/ChatPanel';
+import LoginScreen from './components/LoginScreen';
 import Footer from './components/Footer';
 
 export default function App() {
+  const [user, setUser] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  // Listen for auth state changes
+  useEffect(() => {
+    const unsub = onAuthChange((firebaseUser) => {
+      setUser(firebaseUser);
+      setAuthChecked(true);
+    });
+    return unsub;
+  }, []);
+
   const clock = useRealTimeClock();
   const { life, birthday } = useCounters();
   const { photos, upload, remove } = usePhotos();
   const heartRef = useRef(null);
+  const userName = getDisplayName(user);
 
   // Lightbox state
   const [lbOpen, setLbOpen] = useState(false);
@@ -64,6 +79,22 @@ export default function App() {
     setLbOpen(false);
   }, [remove]);
 
+  // Show loading state while checking auth
+  if (!authChecked) {
+    return (
+      <div className="login-screen">
+        <div className="login-card">
+          <span className="login-heart" style={{ fontSize: '3rem', animation: 'pulseGlow 1.5s ease-in-out infinite' }}>💙</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login if not authenticated
+  if (!user) {
+    return <LoginScreen />;
+  }
+
   return (
     <>
       <ParticlesCanvas />
@@ -102,7 +133,7 @@ export default function App() {
 
       <ComplimentButton onHearts={handleHearts} />
       <HeartBurst ref={heartRef} />
-      <ChatPanel />
+      <ChatPanel userName={userName} />
       <CursorTrail />
     </>
   );

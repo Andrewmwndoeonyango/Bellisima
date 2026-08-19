@@ -1740,3 +1740,184 @@ body::after {
     font-size: 0.75rem;
   }
 }
+
+/* ========== LOGIN SCREEN ========== */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  padding: 1rem;
+}
+
+.login-card {
+  width: 400px;
+  max-width: 100%;
+  background: linear-gradient(135deg, rgba(13, 33, 55, 0.95), rgba(20, 40, 65, 0.92));
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(30, 144, 255, 0.08);
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.login-heart {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.login-title {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin: 0 0 0.3rem;
+}
+
+.login-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.login-form {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.login-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.login-input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-top: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.login-input:focus {
+  border-color: var(--blue-glow);
+  box-shadow: 0 0 15px rgba(79, 195, 247, 0.15);
+}
+
+.login-error {
+  color: #ff6b8a;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.login-btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(30, 144, 255, 0.3);
+  margin-top: 0.5rem;
+}
+
+.login-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(30, 144, 255, 0.4);
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.login-switch {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.login-switch-btn {
+  color: var(--blue-glow);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  font-family: var(--font-body);
+}
+
+.login-switch-btn:hover {
+  color: var(--pink-accent);
+}
+
+/* ========== CHAT AUTH ELEMENTS ========== */
+.chat-user-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue-glow);
+  background: rgba(79, 195, 247, 0.1);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 20px;
+  padding: 0.25rem 0.6rem;
+  white-space: nowrap;
+}
+
+.chat-logout-btn {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.chat-logout-btn:hover {
+  opacity: 1;
+  color: var(--blue-glow);
+  transform: rotate(-15deg);
+}
+
+.chat-bubble-name {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--pink-accent);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
+}

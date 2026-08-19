@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { sendMessage, listenForMessages } from '../chat';
+import { sendMessage, listenForMessages, logout } from '../chat';
 
-const USERS = { me: 'Andy', grace: 'Grace' };
-
-export default function ChatPanel() {
+export default function ChatPanel({ userName }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
-  const [who, setWho] = useState('me'); // Toggle who you are
   const [unread, setUnread] = useState(0);
   const listRef = useRef(null);
   const inputRef = useRef(null);
@@ -30,7 +27,6 @@ export default function ChatPanel() {
     if (listRef.current) {
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
-    // Track unread when closed
     if (!open) {
       setUnread((prev) => prev + 1);
     }
@@ -46,10 +42,10 @@ export default function ChatPanel() {
 
   const handleSend = useCallback(() => {
     if (!text.trim()) return;
-    sendMessage(who === 'me' ? USERS.me : USERS.grace, text);
+    sendMessage(userName, text);
     setText('');
     inputRef.current?.focus();
-  }, [text, who]);
+  }, [text, userName]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -91,12 +87,9 @@ export default function ChatPanel() {
             </div>
           </div>
           <div className="chat-header-right">
-            <button
-              className="chat-who-btn"
-              onClick={() => setWho((w) => (w === 'me' ? 'grace' : 'me'))}
-              title="Switch sender"
-            >
-              I'm {who === 'me' ? 'Andy' : 'Grace'}
+            <span className="chat-user-badge">{userName}</span>
+            <button className="chat-logout-btn" onClick={logout} title="Log out">
+              ↪
             </button>
             <button className="chat-close-btn" onClick={() => setOpen(false)}>
               &times;
@@ -110,11 +103,11 @@ export default function ChatPanel() {
             <div className="chat-empty">
               <span className="chat-empty-icon">💙</span>
               <p>Say hi to each other!</p>
-              <p className="chat-empty-sub">Messages appear here in real time</p>
+              <p className="chat-empty-sub">Messages are saved and sync in real time</p>
             </div>
           )}
           {messages.map((msg, i) => {
-            const isMe = msg.sender === USERS.me;
+            const isMe = msg.sender === userName;
             const showAvatar =
               i === 0 || messages[i - 1].sender !== msg.sender;
             return (
@@ -127,6 +120,9 @@ export default function ChatPanel() {
                 )}
                 {!showAvatar && <span className="chat-avatar-spacer" />}
                 <div className={`chat-bubble ${isMe ? 'bubble-me' : 'bubble-them'}`}>
+                  {showAvatar && !isMe && (
+                    <span className="chat-bubble-name">{msg.sender}</span>
+                  )}
                   <p className="chat-bubble-text">{msg.text}</p>
                   <span className="chat-bubble-time">{formatTime(msg.timestamp)}</span>
                 </div>
@@ -141,7 +137,7 @@ export default function ChatPanel() {
             ref={inputRef}
             className="chat-input"
             type="text"
-            placeholder={who === 'me' ? 'Type a message, Andy...' : "Grace's reply..."}
+            placeholder={`Message as ${userName}...`}
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={handleKeyDown}

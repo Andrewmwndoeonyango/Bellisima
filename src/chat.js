@@ -10,6 +10,13 @@ import {
   serverTimestamp,
   remove,
 } from 'firebase/database';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
 /*
  * ── HOW TO SET UP YOUR FIREBASE ──
@@ -20,9 +27,12 @@ import {
  * 4. Left menu → "Realtime Database" → "Create Database"
  *    - Choose a region close to you
  *    - Start in TEST MODE (you can lock it down later)
- * 5. Left menu → ⚙️ Project Settings → General → scroll to "Your apps"
- * 6. Click the web icon </> → Register app → copy the firebaseConfig
- * 7. Paste your config below replacing the placeholder values
+ * 5. Left menu → "Authentication" → "Get started"
+ *    - Enable "Email/Password" sign-in method
+ *    - Add two users manually: one for Andy, one for Grace
+ * 6. Left menu → ⚙️ Project Settings → General → scroll to "Your apps"
+ * 7. Click the web icon </> → Register app → copy the firebaseConfig
+ * 8. Paste your config below replacing the placeholder values
  */
 
 const firebaseConfig = {
@@ -37,10 +47,41 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
+
+// ── Known users map (email → display name) ──
+const KNOWN_USERS = {
+  // Add your actual emails and names after creating users in Firebase Console
+  // 'andy@example.com': 'Andy',
+  // 'grace@example.com': 'Grace',
+};
 
 const CHAT_PATH = 'us_chat';
-const MAX_MESSAGES = 200;
+const MAX_MESSAGES = 500;
 
+// ── Auth helpers ──
+export function getDisplayName(user) {
+  if (!user) return 'Guest';
+  return KNOWN_USERS[user.email] || user.email.split('@')[0];
+}
+
+export function login(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+export function signup(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
+
+export function logout() {
+  return signOut(auth);
+}
+
+export function onAuthChange(callback) {
+  return onAuthStateChanged(auth, callback);
+}
+
+// ── Chat helpers ──
 export function sendMessage(sender, text) {
   if (!text.trim()) return;
   const chatRef = ref(db, CHAT_PATH);
