@@ -219,3 +219,86 @@ export function listenForMilestones(onUpdate) {
   });
   return unsub;
 }
+
+// ── Journal helpers ──
+const JOURNAL_PATH = 'us_journal';
+
+export function addJournalEntry(author, text) {
+  return push(ref(db, JOURNAL_PATH), {
+    author,
+    text: text.trim(),
+    timestamp: serverTimestamp(),
+  });
+}
+
+export function listenForJournal(onNew) {
+  const unsub = onChildAdded(ref(db, JOURNAL_PATH), (snapshot) => {
+    onNew({ id: snapshot.key, ...snapshot.val() });
+  });
+  return () => unsub();
+}
+
+export function listenForAllJournal(onUpdate) {
+  const unsub = onValue(ref(db, JOURNAL_PATH), (snapshot) => {
+    const data = snapshot.val() || {};
+    const entries = Object.entries(data).map(([key, val]) => ({ id: key, ...val }));
+    onUpdate(entries);
+  });
+  return unsub;
+}
+
+// ── Bucket list helpers ──
+const BUCKET_PATH = 'us_bucketlist';
+
+export function listenForBucketList(onUpdate) {
+  const unsub = onValue(ref(db, BUCKET_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || []);
+  });
+  return unsub;
+}
+
+export function setBucketList(items) {
+  return set(ref(db, BUCKET_PATH), items);
+}
+
+// ── Shared playlist helpers ──
+const PLAYLIST_PATH = 'us_playlist';
+
+export function listenForSharedPlaylist(onUpdate) {
+  const unsub = onValue(ref(db, PLAYLIST_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || []);
+  });
+  return unsub;
+}
+
+export function setSharedPlaylist(items) {
+  return set(ref(db, PLAYLIST_PATH), items);
+}
+
+// ── Photo reactions helpers ──
+const REACTIONS_PATH = 'us_reactions';
+
+export function toggleReaction(photoId, userId) {
+  return set(ref(db, `${REACTIONS_PATH}/${photoId}/${userId}`), {
+    timestamp: serverTimestamp(),
+  });
+}
+
+export function removeReaction(photoId, userId) {
+  return remove(ref(db, `${REACTIONS_PATH}/${photoId}/${userId}`));
+}
+
+export function listenForReactions(onUpdate) {
+  const unsub = onValue(ref(db, REACTIONS_PATH), (snapshot) => {
+    onUpdate(snapshot.val() || {});
+  });
+  return unsub;
+}
+
+// ── Get all chat messages (for memory replay) ──
+export function getAllMessages() {
+  return get(ref(db, CHAT_PATH)).then((snapshot) => {
+    const data = snapshot.val() || {};
+    return Object.entries(data).map(([key, val]) => ({ id: key, ...val }));
+  });
+}

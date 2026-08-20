@@ -2388,3 +2388,544 @@ body::after {
   font-size: 0.75rem;
   color: var(--text-primary);
 }
+
+.milestone-badge.upcoming {
+  opacity: 0.5;
+}
+
+.milestones-upcoming-title {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0.8rem 0 0.5rem;
+}
+
+/* ========== PLAYLIST (UPDATED) ========== */
+.playlist-player {
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.playlist-now-playing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.playlist-now-icon {
+  font-size: 1.2rem;
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.playlist-now-title {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.playlist-close-player {
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.playlist-close-player:hover {
+  opacity: 1;
+}
+
+.playlist-yt-link {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--blue-glow);
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.playlist-yt-link:hover {
+  color: var(--pink-accent);
+}
+
+.playlist-item.playing {
+  background: rgba(30, 144, 255, 0.1);
+  border-color: var(--blue-glow);
+}
+
+.playlist-play-btn {
+  font-size: 0.9rem;
+  color: var(--blue-glow);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0.3rem;
+  transition: transform 0.2s;
+}
+
+.playlist-play-btn:hover {
+  transform: scale(1.2);
+}
+
+.playlist-remove-btn {
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.4;
+  transition: all 0.2s;
+}
+
+.playlist-remove-btn:hover {
+  opacity: 1;
+  color: #ff6b8a;
+}
+
+.playlist-added-by {
+  font-size: 0.6rem;
+  color: var(--pink-accent);
+  opacity: 0.7;
+}
+
+.playlist-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0.8rem 0;
+}
+
+.playlist-add-input {
+  padding: 0.6rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.playlist-add-input:focus {
+  border-color: var(--blue-glow);
+}
+
+.playlist-add-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.playlist-save-btn {
+  flex: 1;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.playlist-cancel-btn {
+  padding: 0.5rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.playlist-add-song-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px dashed rgba(79, 195, 247, 0.3);
+  border-radius: 10px;
+  color: var(--blue-glow);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.playlist-add-song-btn:hover {
+  background: rgba(30, 144, 255, 0.12);
+  border-color: var(--blue-glow);
+}
+
+/* ========== JOURNAL ========== */
+.journal-section {
+  text-align: center;
+}
+
+.journal-form {
+  margin: 0.8rem 0;
+}
+
+.journal-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.journal-input:focus {
+  border-color: var(--blue-glow);
+}
+
+.journal-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.journal-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.journal-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.journal-entries {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.journal-empty {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.journal-entry {
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.journal-entry.theirs {
+  border-color: rgba(255, 107, 138, 0.2);
+}
+
+.journal-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.journal-entry-author {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue-glow);
+  letter-spacing: 0.5px;
+}
+
+.journal-entry.theirs .journal-entry-author {
+  color: var(--pink-accent);
+}
+
+.journal-entry-date {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.journal-entry-text {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* ========== BUCKET LIST ========== */
+.bucketlist-section {
+  text-align: center;
+}
+
+.bucketlist-items {
+  margin: 0.8rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.bucketlist-empty {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.bucketlist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.bucketlist-item:hover {
+  background: rgba(30, 144, 255, 0.1);
+}
+
+.bucketlist-item.done {
+  opacity: 0.6;
+}
+
+.bucketlist-item.done .bucketlist-text {
+  text-decoration: line-through;
+}
+
+.bucketlist-check {
+  font-size: 1rem;
+  color: var(--blue-glow);
+  min-width: 1.2rem;
+  text-align: center;
+}
+
+.bucketlist-item.done .bucketlist-check {
+  color: #4caf50;
+}
+
+.bucketlist-icon {
+  font-size: 1.1rem;
+}
+
+.bucketlist-text {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.bucketlist-by {
+  font-size: 0.6rem;
+  color: var(--pink-accent);
+  opacity: 0.7;
+}
+
+.bucketlist-remove {
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.bucketlist-item:hover .bucketlist-remove {
+  opacity: 0.5;
+}
+
+.bucketlist-remove:hover {
+  opacity: 1 !important;
+  color: #ff6b8a;
+}
+
+.bucketlist-progress {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0.3rem;
+}
+
+.bucketlist-add-form {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bucketlist-icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: center;
+}
+
+.bucketlist-icon-btn {
+  font-size: 1.2rem;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  transition: all 0.2s;
+}
+
+.bucketlist-icon-btn.active {
+  border-color: var(--blue-glow);
+  background: rgba(30, 144, 255, 0.1);
+}
+
+.bucketlist-add-input {
+  padding: 0.6rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.bucketlist-add-input:focus {
+  border-color: var(--blue-glow);
+}
+
+.bucketlist-add-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bucketlist-save-btn {
+  flex: 1;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bucketlist-cancel-btn {
+  padding: 0.5rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.bucketlist-add-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  background: rgba(30, 144, 255, 0.06);
+  border: 1px dashed rgba(79, 195, 247, 0.3);
+  border-radius: 10px;
+  color: var(--blue-glow);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.bucketlist-add-btn:hover {
+  background: rgba(30, 144, 255, 0.12);
+  border-color: var(--blue-glow);
+}
+
+/* ========== MEMORY REPLAY ========== */
+.memory-section {
+  text-align: center;
+}
+
+.memory-card {
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 16px;
+  padding: 1.2rem 1rem;
+  margin: 0.8rem auto;
+  max-width: 400px;
+  animation: scaleIn 0.3s ease;
+}
+
+.memory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.memory-sender {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue-glow);
+}
+
+.memory-date {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.memory-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.memory-empty {
+  color: var(--text-secondary);
+  margin: 1rem 0;
+}
+
+.memory-empty-icon {
+  font-size: 2rem;
+  display: block;
+  opacity: 0.5;
+}
+
+.memory-btn {
+  margin-top: 0.8rem;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, var(--blue-primary), var(--pink-accent));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.memory-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.memory-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}

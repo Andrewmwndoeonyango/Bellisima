@@ -21,6 +21,9 @@ import DateCountdown from './components/DateCountdown';
 import DailyQuestion from './components/DailyQuestion';
 import Milestones from './components/Milestones';
 import PromisesList from './components/PromisesList';
+import Journal from './components/Journal';
+import BucketList from './components/BucketList';
+import MemoryReplay from './components/MemoryReplay';
 import ComplimentButton from './components/ComplimentButton';
 import HeartBurst from './components/HeartBurst';
 import ThinkingOfYou from './components/ThinkingOfYou';
@@ -128,7 +131,10 @@ export default function App() {
           onLightbox={openLightbox}
         />
         <LoveLetter />
-        <Playlist />
+        <Playlist userName={userName} />
+        <Journal userName={userName} />
+        <BucketList userName={userName} />
+        <MemoryReplay />
         <PromisesList onHeartBurst={handleHearts} />
         <Milestones />
         <Footer time={clock.time} />
