@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // The start date of your relationship — update this to your real date!
-const RELATIONSHIP_START = new Date('2024-01-01');
+const RELATIONSHIP_START = new Date('2026-07-18');
 
 function buildMilestones() {
   const milestones = [];
